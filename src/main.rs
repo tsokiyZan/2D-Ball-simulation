@@ -1,3 +1,5 @@
+use speedy2d::Window;
+
 //Define Position Data Structure
 struct Position {
     x: f32,
@@ -47,7 +49,7 @@ fn main() {
     });
 
     // Main Simulation loop
-    for _ in 0..10 {
+    for _ in 0..100000 {
         // I like to move it move it
         for ball in &mut balls {
             ball.position.x += ball.velocity.vx * TIME_STEP;
@@ -85,11 +87,9 @@ fn main() {
                 }
             }
         }
-        for (index, ball) in balls.iter().enumerate() {
-            println!(
-                "Ball {}: Position ({}, {})",
-                index, ball.position.x, ball.position.y
-            );
-        }
+
+        // Rendering
+        let window = Window::new_centered("Title", (640, 480)).unwrap();
+
     }
 }
